@@ -55,6 +55,31 @@ export interface DataSource {
   createdAt: string;
 }
 
+// 服务接口类型定义
+export interface ServiceAPI {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  version: string;
+  endpoint: string;
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  requestFormat: 'JSON' | 'XML' | 'Form';
+  responseFormat: 'JSON' | 'XML';
+  parameters?: {
+    name: string;
+    type: string;
+    required: boolean;
+    description: string;
+  }[];
+  status: 'active' | 'deprecated' | 'beta';
+  createdAt: string;
+  updatedAt: string;
+  callCount: number;
+  avgResponseTime: number;
+  documentation: string;
+}
+
 // 待办事项类型定义
 export interface TodoItem {
   id: string;
@@ -688,5 +713,299 @@ export const mockTodoItems: TodoItem[] = [
     status: 'pending',
     createdAt: '2023-05-08T10:00:00',
     dueDate: '2023-05-15T18:00:00'
+  }
+];
+
+// 模拟服务接口数据
+export const mockServiceAPIs: ServiceAPI[] = [
+  {
+    id: 'API001',
+    name: '用户信息查询',
+    description: '根据用户ID查询用户基本信息，包括姓名、联系方式等',
+    category: '用户服务',
+    version: 'v1.0',
+    endpoint: '/api/users/{userId}',
+    method: 'GET',
+    requestFormat: 'JSON',
+    responseFormat: 'JSON',
+    parameters: [
+      {
+        name: 'userId',
+        type: 'string',
+        required: true,
+        description: '用户唯一标识'
+      }
+    ],
+    status: 'active',
+    createdAt: '2023-01-15T08:30:00',
+    updatedAt: '2023-06-20T14:15:00',
+    callCount: 15782,
+    avgResponseTime: 120,
+    documentation: 'https://api.example.com/docs/users'
+  },
+  {
+    id: 'API002',
+    name: '订单创建',
+    description: '创建新的订单记录，支持多种支付方式和配送选项',
+    category: '订单服务',
+    version: 'v2.1',
+    endpoint: '/api/orders',
+    method: 'POST',
+    requestFormat: 'JSON',
+    responseFormat: 'JSON',
+    parameters: [
+      {
+        name: 'userId',
+        type: 'string',
+        required: true,
+        description: '用户ID'
+      },
+      {
+        name: 'products',
+        type: 'array',
+        required: true,
+        description: '产品列表'
+      },
+      {
+        name: 'paymentMethod',
+        type: 'string',
+        required: true,
+        description: '支付方式'
+      }
+    ],
+    status: 'active',
+    createdAt: '2023-02-10T10:15:00',
+    updatedAt: '2023-07-05T09:30:00',
+    callCount: 8943,
+    avgResponseTime: 350,
+    documentation: 'https://api.example.com/docs/orders'
+  },
+  {
+    id: 'API003',
+    name: '数据同步',
+    description: '在多个系统间同步数据，支持增量和全量同步',
+    category: '数据服务',
+    version: 'v1.5',
+    endpoint: '/api/sync',
+    method: 'POST',
+    requestFormat: 'JSON',
+    responseFormat: 'JSON',
+    parameters: [
+      {
+        name: 'sourceSystem',
+        type: 'string',
+        required: true,
+        description: '源系统标识'
+      },
+      {
+        name: 'targetSystem',
+        type: 'string',
+        required: true,
+        description: '目标系统标识'
+      },
+      {
+        name: 'syncType',
+        type: 'string',
+        required: true,
+        description: '同步类型：full或incremental'
+      }
+    ],
+    status: 'active',
+    createdAt: '2023-03-05T14:45:00',
+    updatedAt: '2023-08-12T11:20:00',
+    callCount: 4562,
+    avgResponseTime: 1200,
+    documentation: 'https://api.example.com/docs/sync'
+  },
+  {
+    id: 'API004',
+    name: '实时天气查询',
+    description: '根据城市或地理坐标查询实时天气信息',
+    category: '天气服务',
+    version: 'v3.0',
+    endpoint: '/api/weather',
+    method: 'GET',
+    requestFormat: 'JSON',
+    responseFormat: 'JSON',
+    parameters: [
+      {
+        name: 'city',
+        type: 'string',
+        required: false,
+        description: '城市名称'
+      },
+      {
+        name: 'lat',
+        type: 'number',
+        required: false,
+        description: '纬度'
+      },
+      {
+        name: 'lng',
+        type: 'number',
+        required: false,
+        description: '经度'
+      }
+    ],
+    status: 'active',
+    createdAt: '2023-04-20T09:00:00',
+    updatedAt: '2023-09-01T16:45:00',
+    callCount: 25689,
+    avgResponseTime: 180,
+    documentation: 'https://api.example.com/docs/weather'
+  },
+  {
+    id: 'API005',
+    name: '短信发送',
+    description: '发送短信验证码或通知消息到指定手机号',
+    category: '消息服务',
+    version: 'v2.0',
+    endpoint: '/api/sms/send',
+    method: 'POST',
+    requestFormat: 'JSON',
+    responseFormat: 'JSON',
+    parameters: [
+      {
+        name: 'phoneNumber',
+        type: 'string',
+        required: true,
+        description: '手机号码'
+      },
+      {
+        name: 'content',
+        type: 'string',
+        required: true,
+        description: '短信内容'
+      },
+      {
+        name: 'type',
+        type: 'string',
+        required: true,
+        description: '短信类型：verification或notification'
+      }
+    ],
+    status: 'active',
+    createdAt: '2023-05-15T11:30:00',
+    updatedAt: '2023-10-10T13:15:00',
+    callCount: 32145,
+    avgResponseTime: 200,
+    documentation: 'https://api.example.com/docs/sms'
+  },
+  {
+    id: 'API006',
+    name: '文件上传',
+    description: '上传文件到云存储，支持多种文件格式',
+    category: '存储服务',
+    version: 'v1.2',
+    endpoint: '/api/files/upload',
+    method: 'POST',
+    requestFormat: 'Form',
+    responseFormat: 'JSON',
+    parameters: [
+      {
+        name: 'file',
+        type: 'file',
+        required: true,
+        description: '要上传的文件'
+      },
+      {
+        name: 'path',
+        type: 'string',
+        required: false,
+        description: '存储路径'
+      },
+      {
+        name: 'isPublic',
+        type: 'boolean',
+        required: false,
+        description: '是否公开访问'
+      }
+    ],
+    status: 'active',
+    createdAt: '2023-06-08T15:20:00',
+    updatedAt: '2023-11-05T10:30:00',
+    callCount: 7823,
+    avgResponseTime: 1500,
+    documentation: 'https://api.example.com/docs/files'
+  },
+  {
+    id: 'API007',
+    name: '支付处理',
+    description: '处理各种支付请求，支持多种支付渠道',
+    category: '支付服务',
+    version: 'v2.3',
+    endpoint: '/api/payments/process',
+    method: 'POST',
+    requestFormat: 'JSON',
+    responseFormat: 'JSON',
+    parameters: [
+      {
+        name: 'amount',
+        type: 'number',
+        required: true,
+        description: '支付金额'
+      },
+      {
+        name: 'currency',
+        type: 'string',
+        required: true,
+        description: '货币类型'
+      },
+      {
+        name: 'paymentMethod',
+        type: 'string',
+        required: true,
+        description: '支付方式'
+      },
+      {
+        name: 'orderId',
+        type: 'string',
+        required: true,
+        description: '订单ID'
+      }
+    ],
+    status: 'active',
+    createdAt: '2023-07-12T13:45:00',
+    updatedAt: '2023-12-01T09:15:00',
+    callCount: 12567,
+    avgResponseTime: 450,
+    documentation: 'https://api.example.com/docs/payments'
+  },
+  {
+    id: 'API008',
+    name: '数据分析',
+    description: '对指定数据集进行分析，生成统计报告',
+    category: '分析服务',
+    version: 'v1.0',
+    endpoint: '/api/analytics',
+    method: 'POST',
+    requestFormat: 'JSON',
+    responseFormat: 'JSON',
+    parameters: [
+      {
+        name: 'datasetId',
+        type: 'string',
+        required: true,
+        description: '数据集ID'
+      },
+      {
+        name: 'metrics',
+        type: 'array',
+        required: true,
+        description: '分析指标列表'
+      },
+      {
+        name: 'dimensions',
+        type: 'array',
+        required: false,
+        description: '分析维度列表'
+      }
+    ],
+    status: 'beta',
+    createdAt: '2023-08-20T10:00:00',
+    updatedAt: '2023-12-15T14:30:00',
+    callCount: 2345,
+    avgResponseTime: 2500,
+    documentation: 'https://api.example.com/docs/analytics'
   }
 ]; 

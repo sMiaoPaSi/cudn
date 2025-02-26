@@ -32,6 +32,7 @@ import DataObjectIcon from '@mui/icons-material/DataObject';
 import CategoryIcon from '@mui/icons-material/Category';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CloudIcon from '@mui/icons-material/Cloud';
 
 // 定义侧边栏宽度常量
 const DRAWER_WIDTH = 240;
@@ -115,6 +116,12 @@ const Sidebar = () => {
           label: '数据产品管理',
           path: '/user/dataproducts',
           icon: <CategoryIcon />
+        },
+        {
+          id: 'service-gateway',
+          label: '服务网关',
+          path: '/user/service-gateway',
+          icon: <CloudIcon />
         }
       ],
       roles: ['user']

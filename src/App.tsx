@@ -19,6 +19,7 @@ import FavoritesPage from './pages/user/FavoritesPage';
 import DataSourcesPage from './pages/user/DataSourcesPage';
 import DataProductsPage from './pages/user/DataProductsPage';
 import UserProfilePage from './pages/user/UserProfilePage';
+import ServiceGatewayPage from './pages/user/ServiceGatewayPage';
 
 // 受保护的路由组件
 interface ProtectedRouteProps {
@@ -130,6 +131,12 @@ const App: React.FC = () => {
               <Route path="/user/dataproducts" element={
                 <ProtectedRoute requiredRole="user">
                   <DataProductsPage />
+                </ProtectedRoute>
+              } />
+              
+              <Route path="/user/service-gateway" element={
+                <ProtectedRoute requiredRole="user">
+                  <ServiceGatewayPage />
                 </ProtectedRoute>
               } />
               

@@ -106,6 +106,14 @@ export const userRoutes: AppRoute[] = [
     parentMenu: 'data' // 属于数据中心
   },
   {
+    path: '/user/service-gateway',
+    label: '服务网关',
+    name: '服务网关',
+    roles: ['user'],
+    showInMenu: true,
+    parentMenu: 'data' // 属于数据中心
+  },
+  {
     path: '/user/profile',
     label: '个人资料',
     name: '个人资料',
